@@ -25,12 +25,12 @@ function getUserData(userId){
 }
 
 var userData = [
-  {type: 'Survivor', username:'user1id', preference: 'Ally'},
-  {type: 'Survivor', username:'user2id', preference: 'Survivor'},
-  {type: 'Ally', username:'user3id', preference: 'Survivor'},
-  {type: 'Ally', username:'user4id', preference: 'Counselor'},
-  {type: 'Survivor', username:'user5id', preference: 'Counselor'},
-  {type: 'Counselor', username:'user6id', preference: 'Survivor'}
+  {type: 'Survivor', username:'user1id', preference: 'Ally', pairedWith: 'user3Id'},
+  {type: 'Survivor', username:'user2id', preference: 'Survivor', pairedWith: ''},
+  {type: 'Ally', username:'user3id', preference: 'Survivor', pairedWith: 'user1Id'},
+  {type: 'Ally', username:'user4id', preference: 'Counselor', pairedWith: ''},
+  {type: 'Survivor', username:'user5id', preference: 'Counselor', pairedWith: 'user6Id'},
+  {type: 'Counselor', username:'user6id', preference: 'Survivor', pairedWith: 'user5Id'}
 ];
 
 document.addEventListener('DOMContentLoaded', function(event){
@@ -39,3 +39,28 @@ document.addEventListener('DOMContentLoaded', function(event){
   alert('user 2 wants a ' + user2.getPreference());
 
 });
+
+var results = document.getElementById('submit');
+
+results.addEventListener('click', matcher);
+function matcher(event) {
+  // event.preventDefault();
+  sortUsers();
+  var holder = possibleUsers();
+  var matchedResults = [];
+  for (var i = 0; i < holder.length; i++) {
+    var user = matchedResults[holder[i]];
+    if (user) {
+      matchedResults.push();
+    }
+  }
+
+  function localStorageInsert(key, value) {
+    if (typeof value !== 'undefined') {
+      localStorage.setItem(key, JSON.stringify(value));
+    }
+  }
+  function localStoragePull (key) {
+    JSON.parse(localStorage.getItem(key));
+  };
+}
